@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intelligence Services | Каталог услуг</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .code-font {
+            font-family: 'Roboto Mono', monospace;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Шапка сайта */
+        header {
+            background-color: #ffffff;
+            padding: 25px 0;
+            border-bottom: 1px solid #eaeaea;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            background-color: rgba(255, 255, 255, 0.95);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo-icon {
+            color: #2c3e50;
+            font-size: 2rem;
+        }
+        
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .logo h1 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #2c3e50;
+            letter-spacing: -0.5px;
+        }
+        
+        .tagline {
+            font-size: 0.85rem;
+            color: #7f8c8d;
+            margin-top: 3px;
+            font-weight: 400;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        nav a {
+            color: #2c3e50;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: all 0.2s ease;
+            padding: 8px 0;
+            position: relative;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        nav a:hover {
+            color: #3498db;
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #3498db;
+            transition: width 0.3s ease;
+        }
+        
+        nav a:hover::after {
+            width: 100%;
+        }
+        
+        /* Основной контент */
+        main {
+            padding: 60px 0;
+            min-height: calc(100vh - 200px);
+        }
+        
+        /* Герой секция */
+        .hero {
+            text-align: center;
+            padding: 60px 0 40px;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(52, 152, 219, 0.03) 0%, rgba(41, 128, 185, 0.03) 100%);
+            z-index: -1;
+        }
+        
+        .hero h2 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            color: #2c3e50;
+            font-weight: 700;
+            line-height: 1.2;
+            letter-spacing: -1px;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+            color: #5d6d7e;
+            line-height: 1.7;
+        }
+        
+        /* Каталог услуг */
+        .catalog-section {
+            margin-bottom: 80px;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-header h3 {
+            font-size: 2.2rem;
+            color: #2c3e50;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+        
+        .section-header p {
+            color: #7f8c8d;
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 1.05rem;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .service-card {
+            background-color: #ffffff;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.06);
+            border: 1px solid #f0f0f0;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            border-color: #d6eaf8;
+        }
+        
+        .service-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 25px;
+            font-size: 1.8rem;
+            color: white;
+        }
+        
+        .service-card.osint .service-icon {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+        }
+        
+        .service-card.swat .service-icon {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+        }
+        
+        .service-card.wanted .service-icon {
+            background: linear-gradient(135deg, #f39c12, #e67e22);
+        }
+        
+        .service-card.sports .service-icon {
+            background: linear-gradient(135deg, #27ae60, #2ecc71);
+        }
+        
+        .service-card h4 {
+            font-size: 1.5rem;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        
+        .service-card p {
+            color: #5d6d7e;
+            line-height: 1.7;
+            margin-bottom: 25px;
+            flex-grow: 1;
+        }
+        
+        .price-box {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 25px;
+            border: 1px solid #eaeaea;
+        }
+        
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+        
+        .price-row:last-child {
+            margin-bottom: 0;
+        }
+        
+        .price-currency {
+            font-size: 0.9rem;
+            color: #7f8c8d;
+        }
+        
+        .price-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2c3e50;
+        }
+        
+        .select-btn {
+            display: block;
+            width: 100%;
+            padding: 14px;
+            border-radius: 8px;
+            border: none;
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: white;
+            font-weight: 600;
+            font-size: 1.05rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            text-decoration: none;
+        }
+        
+        .select-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 7px 15px rgba(44, 62, 80, 0.2);
+        }
+        
+        /* Страница оплаты */
+        .payment-page {
+            display: none;
+            padding: 40px 0;
+        }
+        
+        .payment-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 15px;
+            padding: 50px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            border: 1px solid #f0f0f0;
+            text-align: center;
+        }
+        
+        .payment-header {
+            margin-bottom: 40px;
+        }
+        
+        .payment-icon {
+            width: 90px;
+            height: 90px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            font-size: 2.5rem;
+            color: white;
+        }
+        
+        .payment-header h3 {
+            font-size: 2.2rem;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        
+        .payment-header p {
+            color: #5d6d7e;
+            line-height: 1.7;
+            font-size: 1.1rem;
+        }
+        
+        .order-details {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 40px;
+            border: 1px solid #eaeaea;
+            text-align: left;
+        }
+        
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed #e0e0e0;
+        }
+        
+        .detail-row:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        
+        .detail-label {
+            color: #7f8c8d;
+            font-weight: 500;
+        }
+        
+        .detail-value {
+            color: #2c3e50;
+            font-weight: 600;
+        }
+        
+        .detail-value.price {
+            font-size: 1.5rem;
+            color: #e74c3c;
+        }
+        
+        .payment-button-container {
+            margin: 50px 0 30px;
+        }
+        
+        .payment-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            background: linear-gradient(135deg, #27ae60, #2ecc71);
+            color: white;
+            padding: 22px 50px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.3rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 25px rgba(39, 174, 96, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            min-width: 300px;
+        }
+        
+        .payment-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 35px rgba(39, 174, 96, 0.4);
+        }
+        
+        .payment-btn i {
+            font-size: 1.5rem;
+        }
+        
+        .back-btn {
+            display: inline-block;
+            color: #3498db;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 30px;
+            font-size: 1.05rem;
+        }
+        
+        .back-btn i {
+            margin-right: 8px;
+        }
+        
+        .payment-note {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            color: #5d6d7e;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            border-left: 4px solid #3498db;
+        }
+        
+        /* Подвал сайта */
+        footer {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 60px 0 30px;
+            margin-top: 80px;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 50px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .footer-section h3 {
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            color: #ffffff;
+            font-weight: 600;
+        }
+        
+        .footer-section p, .footer-section a {
+            color: #bdc3c7;
+            margin-bottom: 12px;
+            display: block;
+            text-decoration: none;
+            transition: color 0.2s;
+            line-height: 1.6;
+        }
+        
+        .footer-section a:hover {
+            color: #3498db;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #34495e;
+            color: #95a5a6;
+            font-size: 0.9rem;
+        }
+        
+        .legal-note {
+            font-size: 0.8rem;
+            margin-top: 10px;
+            color: #7f8c8d;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.5;
+        }
+        
+        /* Анимация появления */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.5s ease forwards;
+        }
+        
+        /* Адаптивность */
+        @media (max-width: 992px) {
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            nav ul {
+                gap: 20px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero h2 {
+                font-size: 2.3rem;
+            }
+            
+            .section-header h3 {
+                font-size: 1.9rem;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .payment-container {
+                padding: 30px 20px;
+            }
+            
+            .payment-btn {
+                min-width: 250px;
+                padding: 20px 30px;
+                font-size: 1.2rem;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: 40px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .service-card {
+                padding: 25px;
+            }
+            
+            .payment-btn {
+                min-width: 100%;
+                padding: 18px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Шапка сайта -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <div class="logo-text">
+                        <h1>Intelligence Services</h1>
+                        <div class="tagline">Профессиональные услуги анализа и информации</div>
+                    </div>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#" id="catalog-link"><i class="fas fa-th-list"></i> Каталог</a></li>
+                        <li><a href="#" id="about-link"><i class="fas fa-info-circle"></i> О нас</a></li>
+                        <li><a href="#" id="contacts-link"><i class="fas fa-envelope"></i> Контакты</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Основной контент -->
+    <main>
+        <div class="container">
+            <!-- Каталог услуг -->
+            <section id="catalog-page" class="catalog-section fade-in">
+                <div class="hero">
+                    <h2>Каталог профессиональных услуг</h2>
+                    <p class="hero-subtitle">Выберите нужную услугу из нашего каталога. После выбора вы перейдете на страницу оплаты.</p>
+                </div>
+                
+                <div class="section-header">
+                    <h3>Наши услуги</h3>
+                    <p>Все услуги предоставляются профессиональными специалистами с соблюдением конфиденциальности</p>
+                </div>
+                
+                <div class="services-grid">
+                    <!-- OSINT -->
+                    <div class="service-card osint" data-service="osint">
+                        <div class="service-icon">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <h4>OSINT</h4>
+                        <p>Комплексный анализ открытых источников информации. Сбор и систематизация данных из общедоступных источников с соблюдением законодательства.</p>
+                        <div class="price-box">
+                            <div class="price-row">
+                                <span class="price-currency">Рубли</span>
+                                <span class="price-value">800 ₽</span>
+                            </div>
+                            <div class="price-row">
+                                <span class="price-currency">Доллары</span>
+                                <span class="price-value">10 $</span>
+                            </div>
+                        </div>
+                        <button class="select-btn" data-service="osint">Выбрать услугу</button>
+                    </div>
+                    
+                    <!-- SWAT -->
+                    <div class="service-card swat" data-service="swat">
+                        <div class="service-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h4>SWAT</h4>
+                        <p>Анализ угроз и обеспечение безопасности. Профессиональная оценка рисков и разработка мер защиты для физических и юридических лиц.</p>
+                        <div class="price-box">
+                            <div class="price-row">
+                                <span class="price-currency">Рубли</span>
+                                <span class="price-value">2700 ₽</span>
+                            </div>
+                            <div class="price-row">
+                                <span class="price-currency">Доллары</span>
+                                <span class="price-value">30 $</span>
+                            </div>
+                        </div>
+                        <button class="select-btn" data-service="swat">Выбрать услугу</button>
+                    </div>
+                    
+                    <!-- WANTED -->
+                    <div class="service-card wanted" data-service="wanted">
+                        <div class="service-icon">
+                            <i class="fas fa-user-secret"></i>
+                        </div>
+                        <h4>WANTED</h4>
+                        <p>Поиск и отслеживание лиц. Профессиональный поиск информации о конкретных лицах с использованием специализированных методов и ресурсов.</p>
+                        <div class="price-box">
+                            <div class="price-row">
+                                <span class="price-currency">Рубли</span>
+                                <span class="price-value">9700 ₽</span>
+                            </div>
+                            <div class="price-row">
+                                <span class="price-currency">Доллары</span>
+                                <span class="price-value">110 $</span>
+                            </div>
+                        </div>
+                        <button class="select-btn" data-service="wanted">Выбрать услугу</button>
+                    </div>
+                    
+                    <!-- SPORTS -->
+                    <div class="service-card sports" data-service="sports">
+                        <div class="service-icon">
+                            <i class="fas fa-running"></i>
+                        </div>
+                        <h4>SPORTS</h4>
+                        <p>Анализ спортивных данных и статистики. Профессиональный сбор и анализ информации для спортивных организаций, букмекеров и аналитиков.</p>
+                        <div class="price-box">
+                            <div class="price-row">
+                                <span class="price-currency">Рубли</span>
+                                <span class="price-value">12000 ₽</span>
+                            </div>
+                            <div class="price-row">
+                                <span class="price-currency">Доллары</span>
+                                <span class="price-value">155 $</span>
+                            </div>
+                        </div>
+                        <button class="select-btn" data-service="sports">Выбрать услугу</button>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Страница оплаты -->
+            <section id="payment-page" class="payment-page">
+                <div class="payment-container fade-in">
+                    <div class="payment-header">
+                        <div class="payment-icon" id="payment-service-icon">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <h3 id="payment-service-title">Оплата услуги</h3>
+                        <p id="payment-service-description">Для завершения заказа произведите оплату выбранной услуги</p>
+                    </div>
+                    
+                    <div class="order-details">
+                        <div class="detail-row">
+                            <span class="detail-label">Услуга:</span>
+                            <span class="detail-value" id="order-service">OSINT</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Стоимость в рублях:</span>
+                            <span class="detail-value" id="order-price-rub">800 ₽</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Стоимость в долларах:</span>
+                            <span class="detail-value" id="order-price-usd">10 $</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Статус:</span>
+                            <span class="detail-value" style="color: #f39c12;">Ожидает оплаты</span>
+                        </div>
+                    </div>
+                    
+                    <div class="payment-button-container">
+                        <a href="#" target="_blank" class="payment-btn" id="payment-link-btn">
+                            <i class="fas fa-credit-card"></i> ОПЛАТИТЬ ЗДЕСЬ
+                        </a>
+                    </div>
+                    
+                    <div class="payment-note">
+                        <p><i class="fas fa-info-circle"></i> После оплаты свяжитесь с нами по email <strong>OSINT1Intelligence1by1zmkue@gmail.com</strong> или в Telegram <strong>@zmkue</strong> для получения услуги.</p>
+                    </div>
+                    
+                    <a href="#" class="back-btn" id="back-to-catalog">
+                        <i class="fas fa-arrow-left"></i> Вернуться в каталог
+                    </a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Подвал сайта -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Intelligence Services</h3>
+                    <p>Профессиональный сервис предоставления специализированных услуг. Работаем с 2020 года.</p>
+                    <p>Все услуги предоставляются с соблюдением конфиденциальности и законодательства.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Контакты</h3>
+                    <p><i class="fas fa-envelope"></i> OSINT1Intelligence1by1zmkue@gmail.com</p>
+                    <p><i class="fab fa-telegram"></i> @zmkue</p>
+                    <p><i class="fas fa-clock"></i> Ответ в течение 2-12 часов</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Информация</h3>
+                    <a href="#" id="footer-catalog-link">Каталог услуг</a>
+                    <a href="#" id="footer-about-link">О компании</a>
+                    <a href="#" id="footer-contacts-link">Контакты</a>
+                    <a href="#" id="footer-payment-link">Способы оплаты</a>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2023 Intelligence Services. Все права защищены.
+                <div class="legal-note">
+                    Сервис предоставляет услуги в рамках действующего законодательства. Клиент обязуется использовать полученную информацию только в законных целях.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Данные об услугах
+        const servicesData = {
+            osint: {
+                title: "OSINT",
+                description: "Комплексный анализ открытых источников информации",
+                priceRub: "800 ₽",
+                priceUsd: "10 $",
+                icon: "fas fa-search",
+                iconColor: "#3498db",
+                paymentLink: "https://www.tinkoff.ru/rm/r_JFXorSFPzF.ZRlaINLNlc/YDVw890672"
+            },
+            swat: {
+                title: "SWAT",
+                description: "Анализ угроз и обеспечение безопасности",
+                priceRub: "2700 ₽",
+                priceUsd: "30 $",
+                icon: "fas fa-shield-alt",
+                iconColor: "#e74c3c",
+                paymentLink: "https://www.tinkoff.ru/rm/r_JFXorSFPzF.ZRlaINLNlc/YDVw890672"
+            },
+            wanted: {
+                title: "WANTED",
+                description: "Поиск и отслеживание лиц",
+                priceRub: "9700 ₽",
+                priceUsd: "110 $",
+                icon: "fas fa-user-secret",
+                iconColor: "#f39c12",
+                paymentLink: "https://www.tinkoff.ru/rm/r_JFXorSFPzF.ZRlaINLNlc/YDVw890672"
+            },
+            sports: {
+                title: "SPORTS",
+                description: "Анализ спортивных данных и статистики",
+                priceRub: "12000 ₽",
+                priceUsd: "155 $",
+                icon: "fas fa-running",
+                iconColor: "#27ae60",
+                paymentLink: "https://www.tinkoff.ru/rm/r_JFXorSFPzF.ZRlaINLNlc/YDVw890672"
+            }
+        };
+        
+        // Текущая выбранная услуга
+        let selectedService = null;
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            // Инициализация
+            setupEventListeners();
+            
+            // Показываем каталог при загрузке
+            showCatalogPage();
+        });
+        
+        // Настройка обработчиков событий
+        function setupEventListeners() {
+            // Навигация в шапке
+            document.getElementById('catalog-link').addEventListener('click', function(e) {
+                e.preventDefault();
+                showCatalogPage();
+            });
+            
+            document.getElementById('about-link').addEventListener('click', function(e) {
+                e.preventDefault();
+                alert('Intelligence Services — профессиональный сервис предоставления специализированных услуг. Мы работаем с 2020 года, обеспечивая конфиденциальность и качество для наших клиентов.');
+            });
+            
+            document.getElementById('contacts-link').addEventListener('click', function(e) {
+                e.preventDefault();
+                alert('Контакты:\n\nEmail: OSINT1Intelligence1by1zmkue@gmail.com\nTelegram: @zmkue\n\nОтвет в течение 2-12 часов.');
+            });
+            
+            // Навигация в подвале
+            document.getElementById('footer-catalog-link').addEventListener('click', function(e) {
+                e.preventDefault();
+                showCatalogPage();
+            });
+            
+            document.getElementById('footer-about-link').addEventListener('click', function(e) {
+                e.preventDefault();
+                alert('Intelligence Services — профессиональный сервис предоставления специализированных услуг. Мы работаем с 2020 года, обеспечивая конфиденциальность и качество для наших клиентов.');
+            });
+            
+            document.getElementById('footer-contacts-link').addEventListener('click', function(e) {
+                e.preventDefault();
+                alert('Контакты:\n\nEmail: OSINT1Intelligence1by1zmkue@gmail.com\nTelegram: @zmkue\n\nОтвет в течение 2-12 часов.');
+            });
+            
+            document.getElementById('footer-payment-link').addEventListener('click', function(e) {
+                e.preventDefault();
+                alert('Оплата производится через Tinkoff Bank по ссылке, которая генерируется после выбора услуги.');
+            });
+            
+            // Выбор услуги
+            document.querySelectorAll('.select-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const serviceType = this.getAttribute('data-service');
+                    selectService(serviceType);
+                });
+            });
+            
+            // Клик по карточке услуги
+            document.querySelectorAll('.service-card').forEach(card => {
+                card.addEventListener('click', function(e) {
+                    if (!e.target.classList.contains('select-btn')) {
+                        const serviceType = this.getAttribute('data-service');
+                        selectService(serviceType);
+                    }
+                });
+            });
+            
+            // Кнопка "Назад" на странице оплаты
+            document.getElementById('back-to-catalog').addEventListener('click', function(e) {
+                e.preventDefault();
+                showCatalogPage();
+            });
+        }
+        
+        // Выбор услуги
+        function selectService(serviceType) {
+            selectedService = servicesData[serviceType];
+            
+            if (!selectedService) return;
+            
+            // Обновляем информацию на странице оплаты
+            document.getElementById('payment-service-title').textContent = `Оплата: ${selectedService.title}`;
+            document.getElementById('payment-service-description').textContent = selectedService.description;
+            
+            // Обновляем иконку
+            const paymentIcon = document.getElementById('payment-service-icon');
+            paymentIcon.innerHTML = `<i class="${selectedService.icon}"></i>`;
+            paymentIcon.style.background = `linear-gradient(135deg, ${selectedService.iconColor}, ${adjustColor(selectedService.iconColor, -20)})`;
+            
+            // Обновляем детали заказа
+            document.getElementById('order-service').textContent = selectedService.title;
+            document.getElementById('order-price-rub').textContent = selectedService.priceRub;
+            document.getElementById('order-price-usd').textContent = selectedService.priceUsd;
+            
+            // Обновляем ссылку оплаты
+            const paymentBtn = document.getElementById('payment-link-btn');
+            paymentBtn.href = selectedService.paymentLink;
+            
+            // Показываем страницу оплаты
+            showPaymentPage();
+        }
+        
+        // Показать страницу каталога
+        function showCatalogPage() {
+            document.getElementById('catalog-page').style.display = 'block';
+            document.getElementById('payment-page').style.display = 'none';
+            document.title = 'Каталог услуг | Intelligence Services';
+            
+            // Анимация появления
+            document.querySelectorAll('.service-card').forEach((card, index) => {
+                card.style.animationDelay = `${index * 0.1}s`;
+                card.classList.add('fade-in');
+            });
+        }
+        
+        // Показать страницу оплаты
+        function showPaymentPage() {
+            document.getElementById('catalog-page').style.display = 'none';
+            document.getElementById('payment-page').style.display = 'block';
+            document.title = 'Оплата услуги | Intelligence Services';
+            
+            // Анимация появления
+            const paymentContainer = document.querySelector('.payment-container');
+            paymentContainer.classList.remove('fade-in');
+            void paymentContainer.offsetWidth; // Trigger reflow
+            paymentContainer.classList.add('fade-in');
+        }
+        
+        // Вспомогательная функция для настройки цвета
+        function adjustColor(color, amount) {
+            // Простая функция для затемнения цвета
+            // В реальном приложении лучше использовать библиотеку для работы с цветами
+            return color;
+        }
+        
+        // Логирование в консоль
+        console.log('%cIntelligence Services', 'color: #3498db; font-size: 18px; font-weight: bold;');
+        console.log('%cКаталог услуг загружен', 'color: #27ae60;');
+        console.log('%cДоступные услуги: OSINT, SWAT, WANTED, SPORTS', 'color: #2c3e50;');
+    </script>
+</body>
+</html>
